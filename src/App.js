@@ -37,17 +37,8 @@ const initialValue = {
 
 function reducer(state, action) {
   switch (action.type) {
-     case 'CHANGE_INPUT' :
-      return {
-        ...state,
-        inputs : {
-          ...state.inputs,
-          [action.name] : action.value
-        }
-      };
     case 'CREATE_USER' :
       return {
-          inputs : initialValue.inputs,
           users :  state.users.concat(action.user)
       };
     case 'REMOVE_USER' :
@@ -79,12 +70,9 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialValue);
   const {users} = state;
   //const {username, email} = state.inputs;
-  const [inputs, onChange, reset] = useInputs({
-    username : '',
-    email : ''
-  });
+ 
 
-  const {username, email} = inputs;
+  // const {username, email} = inputs;
  /*  const onChange = useCallback(e => {
       const {name, value} = e.target;
       dispatch({
@@ -94,9 +82,9 @@ function App() {
       });
   }, []); */
 
-  const nextId = useRef(4);
+ // const nextId = useRef(4);
 
-  const onCreate = useCallback(() => {
+  /* const onCreate = useCallback(() => {
     dispatch({
       type : 'CREATE_USER',
       user : {
@@ -107,7 +95,7 @@ function App() {
     });
     nextId.current += 1;
     reset();
-  }, [username, email, reset]);
+  }, [username, email, reset]); */
 
  /*  const onRemove = useCallback(id => {
     dispatch({
@@ -126,12 +114,7 @@ function App() {
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
     <MyContext.Provider value={dispatch}>
-      <CreateUser
-        username={username}
-        email={email}
-        onChange={onChange}
-        onCreate={onCreate}
-      />
+      <CreateUser />
       <UserList users={users}  />
       <div>활성사용자 수 :  {count}</div>
     </MyContext.Provider>
