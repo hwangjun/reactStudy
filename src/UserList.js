@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
-import context from './App';
+import {MyContext} from './App';
 
 
 const User = React.memo(function User({ user }) {
-const dispatch = useContext(context);
+const dispatch = useContext(MyContext);
 
 
   return (

@@ -73,7 +73,7 @@ function reducer(state, action) {
   }
 }
 
-export const context = createContext(null);
+export const MyContext = createContext(null);
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialValue);
@@ -125,7 +125,7 @@ function App() {
 
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
-    <context.Provider value={dispatch}>
+    <MyContext.Provider value={dispatch}>
       <CreateUser
         username={username}
         email={email}
@@ -134,7 +134,7 @@ function App() {
       />
       <UserList users={users}  />
       <div>활성사용자 수 :  {count}</div>
-    </context.Provider>
+    </MyContext.Provider>
   );
 }
 
